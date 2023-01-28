@@ -757,7 +757,9 @@ def view_status_code(codes):
             code = int(codes)
         except ValueError:
             return Response("Invalid status code", status=400)
-        return status_code(code)
+        resp = status_code(code)
+        resp.data = 'sending you a %d' % code
+        return resp
 
     choices = []
     for choice in codes.split(","):
